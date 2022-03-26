@@ -1,0 +1,27 @@
+package com.example.topupmama.data.models
+
+data class Current(
+    val lastUpdatedEpoch: Int,
+    val last_updated: String,
+    val temp_c: Double,
+    val temp_f: Double,
+    val isDay: Int,
+    val condition: Condition,
+    val wind_mph: Double,
+    val windKph: Double,
+    val windDegree: Int,
+    val windDir: String,
+    val pressureMb: Double,
+    val pressureIn: Double,
+    val precipMm: Double,
+    val precip_in: Double,
+    val humidity: Int,
+    val cloud: Int?,
+    val feelslike_c: Double,
+    val feelslike_f: Double,
+    val visKm: Double,
+    val visMiles: Double,
+    val uv: Double,
+    val gustMph: Double,
+    val gustKph: Double,
+)

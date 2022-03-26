@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+    <dimen name="card_list_margin">8dp</dimen>
+    <dimen name="margin_small">8dp</dimen>
+    <dimen name="margin_big">16dp</dimen>
+    <dimen name="padding_rv_bottom">80dp</dimen>
+
+    <!--    toolbar-->
+    <dimen name="app_bar_elevation">4dp</dimen>
+    <dimen name="toolbar_height">56dp</dimen>
+    <dimen name="toolbar_inset_start">@dimen/margin_big</dimen>
+    <dimen name="toolbar_title_text_size">20sp</dimen>
+</resources>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="RemainderVertical">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+<!--        <item name="android:layout_weight">1</item>-->
+    </style>
+
+    <!-- AirGraph default settings -->
+    <style name="RemainderVertical.AirGraph">
+        <item name="android:background">@color/graph_background</item>
+        <item name="line_color">@color/graph_line</item>
+        <item name="area_color">@color/graph_area</item>
+        <item name="grid_color">@color/graph_grid</item>
+        <item name="text_color">@color/graph_text</item>
+        <item name="mark_color">@color/graph_mark</item>
+        <item name="title_text_size">13sp</item>
+        <item name="title_x_offset">10dp</item>
+        <item name="title_y_offset">10dp</item>
+        <item name="label_text_size">10sp</item>
+        <item name="line_width">2dp</item>
+        <item name="grid_line_width">1dp</item>
+        <item name="end_point_marker_radius">5dp</item>
+        <item name="end_point_label_text_size">20sp</item>
+        <item name="end_point_label_x_offset">10dp</item>
+        <item name="end_point_label_y_offset">20dp</item>
+        <item name="vertical_offset">50dp</item>
+        <item name="horizontal_offset">0dp</item>
+    </style>
+</resources>
