@@ -40,4 +40,10 @@ class WeatherRepository(
 
     suspend fun update(isFavorite: Boolean,priority: Int,cityName: String) = weatherDao.update(isFavorite,priority,cityName)
 
+
+
+    suspend fun  getForeCastWeather(cityName: String,days: Int) = safeApiCall(ioDispatcher) {
+        return@safeApiCall weatherApi.fetchForecastWeather(cityName = cityName,days = days)
+    }
+
 }

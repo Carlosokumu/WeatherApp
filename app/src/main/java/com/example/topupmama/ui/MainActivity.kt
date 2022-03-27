@@ -9,14 +9,22 @@ import android.view.MenuItem
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.widget.SearchView
+import androidx.core.util.ObjectsCompat
 import androidx.lifecycle.lifecycleScope
 import com.example.topupmama.R
 import com.example.topupmama.adapters.WeatherAdapter
 import com.example.topupmama.base.BaseActivity
+import com.example.topupmama.base.CountriesBox
 import com.example.topupmama.data.local.entities.Country
+import com.example.topupmama.data.local.entities.ForeCastDb
+import com.example.topupmama.data.local.entities.ForeCastDb_
+import com.example.topupmama.data.models.Days
+import com.example.topupmama.data.models.DummyData
+import com.example.topupmama.data.models.ForeCastState
 import com.example.topupmama.data.models.WeatherState
 import com.example.topupmama.databinding.ActivityMainBinding
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.flow.asFlow
 import kotlinx.coroutines.flow.collect
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -29,6 +37,9 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
     private lateinit var searchView: SearchView
     private lateinit var searchItem: MenuItem
     private val  currentCountries = mutableListOf<Country>()
+    private var increment : Int = 0
+    private var forecastDays = mutableListOf<String>()
+    private var tempMap : Map<String,List<String>> = mapOf()
 
     @SuppressLint("ResourceAsColor")
     @RequiresApi(Build.VERSION_CODES.N)
@@ -47,10 +58,11 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
         binding.swipeRefresh.setOnRefreshListener {
             if (!currentCountries.isNullOrEmpty()){
                 loadWeather(*currentCountries.toTypedArray())
+                loadForeCasts(*currentCountries.toTypedArray())
             }
         }
 
-        //weatherAdapter.setData(Constants.getDummyData())
+
         binding.adapter = weatherAdapter
         binding.toolbar.inflateMenu(R.menu.search_menu)
         searchItem = binding.toolbar.menu.findItem(R.id.search_item)
@@ -71,7 +83,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
             }
         })
 
-        Toast.makeText(this,"oncreate Called",Toast.LENGTH_SHORT).show()
+
 
 
 
@@ -86,41 +98,59 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
                         //Insert a country into the database
                         viewModel.insertCountry(country)
                         weatherAdapter.replace(country)
-
-
-                        Toast.makeText(
-                            this@MainActivity,
-                            country.cityName.toString(),
-                            Toast.LENGTH_SHORT
-                        ).show()
                         binding.swipeRefresh.isRefreshing = false
                     }
                     is WeatherState.Loading -> {
                         binding.swipeRefresh.isRefreshing = true
-                        Toast.makeText(this@MainActivity, "lOADING", Toast.LENGTH_SHORT).show()
                     }
                     is WeatherState.Error -> {
                         binding.swipeRefresh.isRefreshing = false
-                        Toast.makeText(this@MainActivity, weatherState.message, Toast.LENGTH_SHORT)
-                            .show()
+
+                    }
+                }
+            }
+        }
+        lifecycleScope.launchWhenStarted {
+
+            viewModel.forecastState.collect {  forecaststate ->
+                when(forecaststate){
+                    is  ForeCastState.Result -> {
+                        val collector = mutableListOf<String>()
+                        for(i in forecaststate.weather.forecast.forecastday){
+                            collector.add(i.day.avgtemp_c.toString())
+                        }
+                        var special = ForeCastDb(cityName = forecaststate.weather.location.name,temps = collector)
+                        CountriesBox.store.boxFor(ForeCastDb::class.java).put(special)
+
+
+                        for (i in forecaststate.weather.forecast.forecastday){
+                            weatherAdapter.setForeCastDays(i.date)
+                        }
+
+
+                       // weatherAdapter.setForeCast(forecaststate.weather.forecast.forecastday[1])
+
+                    }
+                    is  ForeCastState.Loading -> {
+                        binding.swipeRefresh.isRefreshing = true
+                        Toast.makeText(this@MainActivity, "lOADING", Toast.LENGTH_SHORT).show()
+                    }
+                    is  ForeCastState.Error -> {
+
                     }
                 }
             }
         }
 
-       // weatherAdapter.moveToPosition(Constants.getDummyData()[2])
 
 
 
-      //Constants.getDummyData().stream().toArray<DummyData>(DummyData::class)
-       // Iterable.toArray(locations, WorldLocation::class.java))
-        val strs: MutableList<String> = ArrayList()
-        strs.add("hello")
-        strs.add("world")
 
-        test(*strs.toTypedArray())
+
+
+
         viewModel.countriesModel.observe(this,::onCountriesFetched)
-       // Log.d("HERE",*strs.toTypedArray())
+
     }
 
 
@@ -128,21 +158,17 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
 
     @ExperimentalCoroutinesApi
     private fun onCountriesFetched(countries: List<Country>?) {
-         Toast.makeText(this,countries?.size.toString(),Toast.LENGTH_SHORT).show()
          weatherAdapter.setData(countries!!)
          loadWeather(*countries.toTypedArray())
+         loadForeCasts(*countries.toTypedArray())
          currentCountries.clear()
          currentCountries.addAll(countries)
-         for (i in  countries){
-             Log.d("ISFAVORITE",i.isFavorite.toString())
-         }
+
 
     }
 
 
-    private fun test(vararg strings: String){
-      Log.d("FORMATTED", strings.toString())
-    }
+
 
 
 
@@ -162,8 +188,21 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
 
     override fun onResume() {
         super.onResume()
-        Toast.makeText(this,"OnResume Called",Toast.LENGTH_SHORT).show()
         viewModel.fetchAllCountries()
+    }
+
+
+
+    @ExperimentalCoroutinesApi
+    private fun loadForeCasts(vararg countries: Country){
+        for (i in countries){
+            viewModel.fetchForeCastWeather(i.cityName,days = 5)
+        }
+    }
+
+
+    fun test(cityName: String){
+        viewModel.fetchForeCastWeather(cityName,days = 5)
     }
 
 

@@ -26,6 +26,8 @@ object Versions {
     const val workVersion = "2.1.0"
     const val swiperefreshlayout = "1.2.0-alpha01"
 
+    const val moshi = "1.13.0"
+
 
 
 }
@@ -82,6 +84,8 @@ object Libraries {
     const val work = "androidx.work:work-runtime-ktx:${Versions.workVersion}"
     const val swiperefreshlayout =
         "androidx.swiperefreshlayout:swiperefreshlayout:${Versions.swiperefreshlayout}"
+
+    const val moshi =  "com.squareup.moshi:moshi-kotlin:1.13.0:${Versions.moshi}"
 
 }
 

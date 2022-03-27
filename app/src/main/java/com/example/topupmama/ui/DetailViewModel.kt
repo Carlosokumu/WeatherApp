@@ -5,15 +5,25 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
 import androidx.lifecycle.viewModelScope
 import com.example.topupmama.data.local.entities.Country
+import com.example.topupmama.data.models.ForeCastState
 import com.example.topupmama.data.repository.WeatherRepository
+import com.example.topupmama.network.WeatherResult
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 class DetailViewModel(private val weatherRepository: WeatherRepository): ViewModel() {
 
 
+    @ExperimentalCoroutinesApi
+    private val _mutableforecastState: MutableStateFlow<ForeCastState> =
+        MutableStateFlow(ForeCastState.Loading)
 
+    @ExperimentalCoroutinesApi
+    val   forecastState: StateFlow<ForeCastState> = _mutableforecastState
 
     fun insertCountry(country: Country) = viewModelScope.launch {
         weatherRepository.insertCountry(country)
@@ -24,5 +34,26 @@ class DetailViewModel(private val weatherRepository: WeatherRepository): ViewMod
     fun update(isFavorite: Boolean,priority: Int,cityName: String) = viewModelScope.launch {
         Log.d("Updating","Updating")
         weatherRepository.update(isFavorite,priority,cityName)
+    }
+
+
+
+    @ExperimentalCoroutinesApi
+    fun fetchForeCastWeather(cityName: String, days:  Int) = viewModelScope.launch {
+        when (
+            val result =
+                weatherRepository.getForeCastWeather(cityName, days = days)
+        ) {
+            WeatherResult.WeatherError -> {
+                _mutableforecastState.value = ForeCastState.Error(message = "No Response")
+
+            }
+            is WeatherResult.ServerError -> {
+
+            }
+            is WeatherResult.Success -> {
+                _mutableforecastState.value = ForeCastState.Result(result.data)
+            }
+        }
     }
 }

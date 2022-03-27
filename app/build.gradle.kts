@@ -88,6 +88,7 @@ dependencies {
     implementation(Libraries.realTm)
     implementation(Libraries.work)
     implementation(Libraries.swiperefreshlayout)
+    //implementation(Libraries.moshi)
 
 
 //    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"

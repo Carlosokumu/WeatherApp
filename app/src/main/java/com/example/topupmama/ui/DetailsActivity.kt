@@ -11,21 +11,30 @@ import android.widget.ImageView
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.core.content.ContextCompat.startActivity
+import androidx.lifecycle.lifecycleScope
 import com.example.topupmama.R
 import com.example.topupmama.adapters.WeatherAdapter
 import com.example.topupmama.base.BaseActivity
+import com.example.topupmama.base.CountriesBox
 import com.example.topupmama.data.local.entities.Country
+import com.example.topupmama.data.local.entities.ForeCastDb
+import com.example.topupmama.data.local.entities.ForeCastDb_
 import com.example.topupmama.data.models.DummyData
+import com.example.topupmama.data.models.ForeCastState
+import com.example.topupmama.data.models.WeatherState
 import com.example.topupmama.databinding.ActivityDetailsBinding
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.flow.collect
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class DetailsActivity : BaseActivity<ActivityDetailsBinding>() {
 
 
-
     private lateinit var country: Country
     private val viewModel by viewModel<DetailViewModel>()
+    private lateinit var tempMap: Map<String,Float>
 
+    @ExperimentalCoroutinesApi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         country = intent.getParcelableExtra("COUNTRY")!!
@@ -40,19 +49,21 @@ class DetailsActivity : BaseActivity<ActivityDetailsBinding>() {
             }
         )
 
+        val city = CountriesBox.store.boxFor(ForeCastDb::class.java)
+            .query(ForeCastDb_.cityName.equal(country.cityName)).build().findFirst()
 
-        val temperatureMap = mapOf(
-            "Mar 14" to 36f,
-            "Mar 15" to 35f,
-            "Mar 16" to 35f,
-            "Mar 17" to 33f,
-            "Mar 18" to 36f
+
+        var temperatureMap = mapOf(
+            "TODAY" to  city!!.temps[0].toFloat(),
+            "TOMMOROW" to city.temps[1].toFloat(),
+            "DAYAFTERTOMMORROW" to city.temps[2].toFloat(),
+
         )
-
-
-        binding.weatherReportGraph.labels = temperatureMap.map { entry -> entry.key }
+        binding.weatherReportGraph.labels =
+            temperatureMap.map { entry -> entry.key }
         binding.weatherReportGraph.values = temperatureMap.values.toMutableList()
-        binding.weatherReportGraph.endPointLabel = "${temperatureMap.entries.last().value} °C"
+        binding.weatherReportGraph.endPointLabel = "Temp(°C)"
+            //"${temperatureMap.entries.last().value} °C"
 
 
         binding.gone = country.icon.isNullOrEmpty()
@@ -62,13 +73,11 @@ class DetailsActivity : BaseActivity<ActivityDetailsBinding>() {
             viewModel.update(true, -1, country.cityName)
 
         }
-         if (country.isFavorite){
-             binding.addToFav.drawable.setTint(resources.getColor(R.color.rock))
-         }
-        else {
-             binding.addToFav.drawable.setTint(resources.getColor(R.color.white_uni))
+        if (country.isFavorite) {
+            binding.addToFav.drawable.setTint(resources.getColor(R.color.rock))
+        } else {
+            binding.addToFav.drawable.setTint(resources.getColor(R.color.white_uni))
         }
-
 
 
     }

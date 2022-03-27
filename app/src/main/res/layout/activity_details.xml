@@ -302,6 +302,8 @@
         <com.example.topupmama.view.GraphView
             android:id="@+id/weather_report_graph"
             android:layout_width="match_parent"
+            app:text_color="@color/transpar"
+            app:label_text_size="@dimen/margin_small"
             android:layout_height="200dp"
             android:layout_alignParentBottom="true"
             app:graph_title="Temperature" />

@@ -29,7 +29,7 @@
     },
     {
       "id": "2:7817544257412043853",
-      "lastPropertyId": "3:1543636875611537712",
+      "lastPropertyId": "2:6432148446015235599",
       "name": "ForeCastDb",
       "properties": [
         {
@@ -42,11 +42,6 @@
           "id": "2:6432148446015235599",
           "name": "cityName",
           "type": 9
-        },
-        {
-          "id": "3:1543636875611537712",
-          "name": "temps",
-          "type": 30
         }
       ],
       "relations": []
