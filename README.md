@@ -26,6 +26,7 @@ Cities screen | Details  Screen
     * [Flow](https://kotlinlang.org/docs/reference/coroutines/flow.html)
     * [KOIN](https://insert-koin.io/)
     * [Retrofit](https://square.github.io/retrofit/)
+    * [WorkManger](https://developer.android.com/jetpack/androidx/releases/work)
     * [Jetpack](https://developer.android.com/jetpack)
         * [Lifecycle](https://developer.android.com/topic/libraries/architecture/lifecycle)
         * [ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel)
