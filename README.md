@@ -37,5 +37,8 @@ Cities screen | Details  Screen
 * Architecture
     * MVVM - Model View View Model
 
+* Gradle
+    * [Gradle Kotlin DSL](https://docs.gradle.org/current/userguide/kotlin_dsl.html)
+
 
 
