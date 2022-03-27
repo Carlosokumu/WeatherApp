@@ -13,3 +13,5 @@ Build a weather app using Kotlin (or java) on android using weather data from pu
    - Write unit tests to validate that the app works well
    - Please submit an apk with a link to the codebase on GitHub
 
+**Screenshots**
+
