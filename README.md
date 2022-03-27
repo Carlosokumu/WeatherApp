@@ -15,3 +15,39 @@ Build a weather app using Kotlin (or java) on android using weather data from pu
 
 **Screenshots**
 
+Cities screen | Details  screen
+--- | --- |
+<img src="https://github.com/Carlosokumu/TopUpMama/blob/master/previews/Screenshot_20220327-141639.png" width="280"/> | <img src="https://github.com/Carlosokumu/TopUpMama/blob/master/previews/Screenshot_20220327-140805.png" width="280"/> 
+
+
+* Technologies used
+    * [Kotlin](https://kotlinlang.org/)
+    * [Coroutines](https://kotlinlang.org/docs/reference/coroutines-overview.html)
+    * [Flow](https://kotlinlang.org/docs/reference/coroutines/flow.html)
+    * [KOIN](https://insert-koin.io/)
+    * [Retrofit](https://square.github.io/retrofit/)
+    * [WorkManager](https://developer.android.com/jetpack/androidx/releases/work)
+    * [Jetpack](https://developer.android.com/jetpack)
+        * [Lifecycle](https://developer.android.com/topic/libraries/architecture/lifecycle)
+        * [ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel)
+    * [Timber](https://github.com/JakeWharton/timber)
+    * [Room](https://developer.android.com/training/data-storage/room)
+    * [ObjectBox](https://docs.objectbox.io/getting-started)
+
+
+* Architecture
+    * MVVM - Model View View Model
+
+* Gradle
+    * [Gradle Kotlin DSL](https://docs.gradle.org/current/userguide/kotlin_dsl.html)
+    
+ * Tests
+    * [JUnit5](https://junit.org/junit5/)
+    * [Spek](https://www.spekframework.org/)
+    * [MockK](https://github.com/mockk/mockk)
+    * [Turbine](https://github.com/cashapp/turbine)
+    
+ **Unit Testing**
+Unit testing is done on Room database,daos and respository together with the api
+
+
