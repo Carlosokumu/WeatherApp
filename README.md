@@ -20,4 +20,20 @@ Cities screen | Details  Screen
 <img src="https://github.com/Carlosokumu/TopUpMama/blob/master/previews/Screenshot_20220327-141639.png" width="280"/> | <img src="https://github.com/Carlosokumu/TopUpMama/blob/master/previews/Screenshot_20220327-140805.png" width="280"/> 
 
 
+* Technologies used
+    * [Kotlin](https://kotlinlang.org/)
+    * [Coroutines](https://kotlinlang.org/docs/reference/coroutines-overview.html)
+    * [Flow](https://kotlinlang.org/docs/reference/coroutines/flow.html)
+    * [KOIN](https://insert-koin.io/)
+    * [Retrofit](https://square.github.io/retrofit/)
+    * [Jetpack](https://developer.android.com/jetpack)
+        * [Lifecycle](https://developer.android.com/topic/libraries/architecture/lifecycle)
+        * [ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel)
+    * [Timber](https://github.com/JakeWharton/timber)
+
+
+* Architecture
+    * MVVM - Model View View Model
+
+
 
