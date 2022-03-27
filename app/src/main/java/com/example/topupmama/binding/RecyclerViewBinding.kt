@@ -10,5 +10,6 @@ object RecyclerViewBinding {
     @BindingAdapter("adapter")
     fun bindAdapter(view: RecyclerView, adapter: RecyclerView.Adapter<*>) {
         view.adapter = adapter
+        view.recycledViewPool.clear()
     }
 }

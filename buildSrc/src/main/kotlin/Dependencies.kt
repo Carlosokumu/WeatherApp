@@ -28,6 +28,13 @@ object Versions {
 
     const val moshi = "1.13.0"
 
+    const val truth ="1.0.1"
+
+    // Timber
+    const val timber = "5.0.0"
+    const val instaToast = "v1.2"
+
+
 
 
 }
@@ -41,6 +48,8 @@ object BuildPlugins {
     const val androidGradlePlugin = "com.android.tools.build:gradle:${Versions.buildToolsVersion}"
     const val kotlinGradlePlugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin}"
     const val objectBox = "io.objectbox"
+    const val  spek = "de.mannodermaus.android-junit5"
+
 }
 
 
@@ -86,6 +95,9 @@ object Libraries {
         "androidx.swiperefreshlayout:swiperefreshlayout:${Versions.swiperefreshlayout}"
 
     const val moshi =  "com.squareup.moshi:moshi-kotlin:1.13.0:${Versions.moshi}"
+
+    const val instaToast = "com.github.usman18:TastyToasty:${Versions.instaToast}"
+    const val timber = "com.jakewharton.timber:timber:${Versions.timber}"
 
 }
 

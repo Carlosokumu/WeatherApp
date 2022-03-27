@@ -16,6 +16,9 @@ fun Country.getDrawable(type: String) =
         "Overcast" -> R.drawable.overcast
         "Fog"   ->  R.drawable.fog
         "Mist" -> R.drawable.fog
+         "Patchy light rain with thunder" -> R.drawable.thunder
+        "Patchy rain possible" -> R.drawable.lightrain
+        "Light Snow" -> R.drawable.fog
 
         else -> R.drawable.sunny
     }

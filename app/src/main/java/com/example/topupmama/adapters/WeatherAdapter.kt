@@ -122,9 +122,6 @@ class WeatherAdapter(private val item: (Country) -> Unit?) :
     }
 
 
-    override fun getItemViewType(position: Int): Int {
-        return position
-    }
 
 
     inner class WeatherVh(val binding: WeatheritemBinding) : RecyclerView.ViewHolder(binding.root) {
@@ -134,17 +131,22 @@ class WeatherAdapter(private val item: (Country) -> Unit?) :
         @SuppressLint("SetTextI18n", "SimpleDateFormat")
         fun bind(country: Country?) {
             binding.cityName.text = country?.cityName
-            binding.starImage.visibility = if (country!!.isFavorite && country != null) View.VISIBLE else View.GONE
+
             if (country != null){
+                binding.starImage.visibility = if (country.isFavorite) View.VISIBLE else View.GONE
+            }
+
+            if (country != null){
+                binding.weatherIcon.visibility = View.VISIBLE
                 binding.weatherIcon.setImageResource(country.getDrawable(country.description!!))
             }
 
-            if (country.temp == null) {
+            if (country?.temp == null) {
                 binding.currentTemp.text = "..."
             } else {
                 binding.currentTemp.text = country.temp.toString() + "°"
             }
-            binding.asAt.text = country.updatedAt?.takeLast(5) ?: "..."
+            binding.asAt.text = country?.updatedAt?.takeLast(5) ?: "..."
             binding.tempDescription.text = country?.description ?: "..."
 
             if (forecastDays.isNotEmpty()) {

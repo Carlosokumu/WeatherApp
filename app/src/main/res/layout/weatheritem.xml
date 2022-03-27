@@ -37,6 +37,7 @@
                         android:layout_width="wrap_content"
                         android:id="@+id/starImage"
                         android:layout_margin="@dimen/margin_big"
+                        android:visibility="gone"
                         android:src="@drawable/ic_favone"
                         android:layout_gravity="end"
                         android:layout_height="wrap_content"/>
@@ -48,11 +49,13 @@
                         android:id="@+id/cityName"
                         android:layout_margin="@dimen/margin_small"
                         android:fontFamily="@font/open"
-                        android:text="Lagos"
+                        android:text="•••"
                         android:textColor="@color/black" />
                     <ImageView
                         android:layout_width="100dp"
                         android:src="@drawable/sunny"
+                        android:visibility="gone"
+                        tools:visibility="visible"
                         android:id="@+id/weatherIcon"
                         android:layout_gravity="center_horizontal"
                         android:layout_height="100dp"/>
@@ -64,7 +67,7 @@
                         android:id="@+id/tempDescription"
                         android:layout_margin="@dimen/margin_small"
                         android:layout_marginTop="@dimen/margin_small"
-                        android:text="Rain"
+                        android:text="Weather"
                         android:textColor="@color/black" />
 
                     <TextView
@@ -76,7 +79,7 @@
                         android:layout_marginTop="@dimen/margin_small"
                         android:fontFamily="@font/open"
                         android:textSize="@dimen/margin_bigger"
-                        android:text="2:36 pm"
+                        android:text="Time"
                         android:textColor="@color/rock" />
 
                     <TextView

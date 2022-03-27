@@ -6,6 +6,7 @@ plugins {
     id(BuildPlugins.kapt)
     id("kotlin-android")
     id(BuildPlugins.objectBox)
+    id(BuildPlugins.spek)
 
 }
 
@@ -41,6 +42,20 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+
+//    testOptions {
+//        junitPlatform {
+//
+//        }
+//    }
+    testOptions {
+        junitPlatform.apply {
+            filters {
+                includeEngines("spek")
+            }
+        }
+    }
+
 
 }
 
@@ -81,10 +96,14 @@ dependencies {
     implementation(Libraries.livedata)
     implementation(Libraries.lifecycle)
     implementation(Libraries.viewModelSavedState)
+    
+
+    implementation(Libraries.instaToast)
+    implementation(Libraries.timber)
 
 
     //Blur Effect
-    implementation(Libraries.blurView)
+    //implementation(Libraries.blurView)
     implementation(Libraries.realTm)
     implementation(Libraries.work)
     implementation(Libraries.swiperefreshlayout)
@@ -99,4 +118,28 @@ dependencies {
 //    testImplementation 'junit:junit:4.+'
 //    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
 //    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+
+    testImplementation("org.junit.platform:junit-platform-engine:1.6.2")
+    testImplementation("org.jetbrains.spek:spek-api:1.1.5")
+    testImplementation("org.spekframework.spek2:spek-dsl-jvm:2.0.6")
+    testImplementation("org.spekframework.spek2:spek-runner-junit5:2.0.6")
+    testImplementation("org.jetbrains.spek:spek-junit-platform-engine:1.1.5")
+    testImplementation("org.junit.platform:junit-platform-runner:1.4.0")
+    testImplementation("com.nhaarman.mockitokotlin2:mockito-kotlin:2.2.0")
+
+    testImplementation("io.mockk:mockk:1.12.0")
+    testImplementation("io.mockk:mockk-agent-jvm:1.12.0") {
+        because(
+            "This dependency resolves the NoClassDefFoundError when using spek " +
+                    "https://github.com/mockk/mockk/issues/605," +
+                    "https://github.com/spekframework/spek/issues/968"
+        )
+    }
+    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.5.1")
+    // test kotlinx.coroutines Flow
+    testImplementation("app.cash.turbine:turbine:0.6.0")
+    androidTestImplementation("androidx.test.ext:junit:1.1.3")
+    androidTestImplementation ("com.google.truth:truth:${Versions.truth}")
+    testImplementation("com.google.truth:truth:${Versions.truth}")
+    testImplementation("com.squareup.okhttp3:mockwebserver:5.0.0-alpha.2")
 }

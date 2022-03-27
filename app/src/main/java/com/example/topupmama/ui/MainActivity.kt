@@ -119,7 +119,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
                         for(i in forecaststate.weather.forecast.forecastday){
                             collector.add(i.day.avgtemp_c.toString())
                         }
-                        var special = ForeCastDb(cityName = forecaststate.weather.location.name,temps = collector)
+                        val special = ForeCastDb(cityName = forecaststate.weather.location.name,temps = collector)
                         CountriesBox.store.boxFor(ForeCastDb::class.java).put(special)
 
 
@@ -127,8 +127,6 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
                             weatherAdapter.setForeCastDays(i.date)
                         }
 
-
-                       // weatherAdapter.setForeCast(forecaststate.weather.forecast.forecastday[1])
 
                     }
                     is  ForeCastState.Loading -> {

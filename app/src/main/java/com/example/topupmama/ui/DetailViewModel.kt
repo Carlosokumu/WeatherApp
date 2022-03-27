@@ -8,12 +8,9 @@ import com.example.topupmama.data.local.entities.Country
 import com.example.topupmama.data.models.ForeCastState
 import com.example.topupmama.data.repository.WeatherRepository
 import com.example.topupmama.network.WeatherResult
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 class DetailViewModel(private val weatherRepository: WeatherRepository): ViewModel() {
 
@@ -55,5 +52,8 @@ class DetailViewModel(private val weatherRepository: WeatherRepository): ViewMod
                 _mutableforecastState.value = ForeCastState.Result(result.data)
             }
         }
+    }
+    fun updateFav(isFavorite: Boolean,priority: Int,cityName: String)= runBlocking {
+        weatherRepository.update(isFavorite,priority,cityName)
     }
 }
