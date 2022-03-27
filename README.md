@@ -47,7 +47,7 @@ Cities screen | Details  screen
     * [MockK](https://github.com/mockk/mockk)
     * [Turbine](https://github.com/cashapp/turbine)
     
- **Unit Testing**
-Unit testing is done on Room database,daos and respository together with the api
+ ## Unit Testing
+ Unit testing is done on Room database,daos and respository together with the api
 
 
