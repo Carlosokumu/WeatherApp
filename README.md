@@ -30,6 +30,7 @@ Cities screen | Details  Screen
         * [Lifecycle](https://developer.android.com/topic/libraries/architecture/lifecycle)
         * [ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel)
     * [Timber](https://github.com/JakeWharton/timber)
+    * [Rooom](https://developer.android.com/training/data-storage/room)
 
 
 * Architecture
