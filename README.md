@@ -48,7 +48,6 @@ Cities screen | Details  screen
     * [Turbine](https://github.com/cashapp/turbine)
     
  **Unit Testing**
-   Unit testing is done on the daos,room,repository and Api.
-   More tests will be added
+Unit testing is done on Room database,daos and respository together with the api
 
 
