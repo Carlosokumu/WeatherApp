@@ -40,6 +40,12 @@ Cities screen | Details  screen
 
 * Gradle
     * [Gradle Kotlin DSL](https://docs.gradle.org/current/userguide/kotlin_dsl.html)
+    
+ * Tests
+    * [JUnit5](https://junit.org/junit5/)
+    * [Spek](https://www.spekframework.org/)
+    * [MockK](https://github.com/mockk/mockk)
+    * [Turbine](https://github.com/cashapp/turbine)
 
 
 
