@@ -23,11 +23,9 @@ import org.koin.java.KoinJavaComponent.inject
 class NotifyWorker(val context: Context, params: WorkerParameters): CoroutineWorker(context,params){
 
 
-    val  weatherRepository : WeatherRepository by inject(WeatherRepository::class.java)
+    private val  weatherRepository : WeatherRepository by inject(WeatherRepository::class.java)
 
     override suspend fun doWork(): Result {
-        Log.d("WorkDoing","Here Stared")
-        val m = inputData.getStringArray("CITIES")
         val favoriteCountries = CountriesBox.store.boxFor(FavoriteCountry::class.java).all
         val cityNames = mutableListOf<String>()
         if (favoriteCountries.isNotEmpty()) {
@@ -56,8 +54,7 @@ class NotifyWorker(val context: Context, params: WorkerParameters): CoroutineWor
 
                }
                is WeatherResult.ServerError -> {
-                   //mutableWeatherState.value =
-                   //WeatherState.Error(result.errorBody?.message.toString())
+
                }
                is WeatherResult.Success -> {
                    NotificationCraftman.buildNotification(context,result.data.asNotification())

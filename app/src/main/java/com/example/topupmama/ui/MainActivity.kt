@@ -133,7 +133,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
                     }
                     is  ForeCastState.Loading -> {
                         binding.swipeRefresh.isRefreshing = true
-                        Toast.makeText(this@MainActivity, "lOADING", Toast.LENGTH_SHORT).show()
+
                     }
                     is  ForeCastState.Error -> {
 

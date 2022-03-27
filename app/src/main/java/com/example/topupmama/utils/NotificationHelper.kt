@@ -30,7 +30,7 @@ object NotificationHelper {
 
 
         return PeriodicWorkRequest.Builder(
-            NotifyWorker::class.java, 8, // repeating interval
+            NotifyWorker::class.java, 1, // repeating interval
             TimeUnit.MINUTES,
         )
             .setInputData(inputData)

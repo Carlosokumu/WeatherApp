@@ -28,8 +28,6 @@ open class TopUpMama : Application() {
 
         initKoin()
         CountriesBox.init(this)
-        val user = FavoriteCountry(countryName = "Ghana",cityName = "Accra")
-        CountriesBox.store.boxFor(FavoriteCountry::class.java).put(user)
         WorkManager.getInstance(this).enqueue(NotificationHelper.getNotificationWork())
         createNotificationChannel()
 

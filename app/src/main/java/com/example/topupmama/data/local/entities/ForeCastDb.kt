@@ -8,6 +8,5 @@ data  class ForeCastDb(
     @Id
     var id: Long = 0,
     var cityName: String,
-    //@Json()
     var temps: MutableList<String>
 )
