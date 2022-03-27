@@ -15,9 +15,10 @@ Build a weather app using Kotlin (or java) on android using weather data from pu
 
 **Screenshots**
 
-Cities screen | Details  screen
---- | --- |
-<img src="https://github.com/Carlosokumu/TopUpMama/blob/master/previews/Screenshot_20220327-141639.png" width="280"/> | <img src="https://github.com/Carlosokumu/TopUpMama/blob/master/previews/Screenshot_20220327-140805.png" width="280"/> 
+Cities screen | Details  screen | Filtered Cities
+--- | --- | --- |
+<img src="https://github.com/Carlosokumu/TopUpMama/blob/master/previews/Screenshot_20220327-141639.png" width="280"/> | <img src="https://github.com/Carlosokumu/TopUpMama/blob/master/previews/Screenshot_20220327-140805.png" width="280"/> |  <img src="https://github.com/Carlosokumu/TopUpMama/blob/master/previews/Screenshot_20220328-021023.png" width="280"/> 
+
 
 
 * Technologies used
