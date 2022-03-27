@@ -31,7 +31,7 @@ Cities screen | Details  Screen
         * [ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel)
     * [Timber](https://github.com/JakeWharton/timber)
     * [Room](https://developer.android.com/training/data-storage/room)
-    * [ObjectBox](https://developer.android.com/training/data-storage/room)
+    * [ObjectBox](https://docs.objectbox.io/getting-started)
 
 
 * Architecture
