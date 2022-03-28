@@ -57,7 +57,8 @@ class NotifyWorker(val context: Context, params: WorkerParameters): CoroutineWor
 
                }
                is WeatherResult.Success -> {
-                   NotificationCraftman.buildNotification(context,result.data.asNotification())
+                   Log.d("TEMPUPDATE",result.data.asNotification().temp.toString())
+                   NotificationCraftman.buildNotification(context,result.data.asNotification().temp.toString())
                }
            }
 

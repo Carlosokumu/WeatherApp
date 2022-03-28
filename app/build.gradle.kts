@@ -18,21 +18,26 @@ android {
     android.buildFeatures.dataBinding = true
 
     defaultConfig {
-        applicationId ("com.example.topupmama")
+        applicationId("com.example.topupmama")
 
         minSdkVersion(AndroidSdk.minSdkVersion)
         targetSdkVersion(AndroidSdk.targetSdkVersion)
-        versionCode =  AndroidSdk.versionCode
+        versionCode = AndroidSdk.versionCode
         versionName = AndroidSdk.versionName
 
-        testInstrumentationRunner ("androidx.test.runner.AndroidJUnitRunner")
+        testInstrumentationRunner("androidx.test.runner.AndroidJUnitRunner")
     }
+
+
 
     buildTypes {
 
         getByName("release") {
-            isMinifyEnabled = false
-            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+            isMinifyEnabled = true
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
         }
     }
     compileOptions {
@@ -56,7 +61,8 @@ android {
         }
     }
 
-
+    lintOptions.isAbortOnError = false
+    lintOptions.isCheckReleaseBuilds = false
 }
 
 dependencies {

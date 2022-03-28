@@ -59,7 +59,6 @@ class DetailsActivity : BaseActivity<ActivityDetailsBinding>() {
 
 
         binding.gone = country.icon.isNullOrEmpty()
-        Toast.makeText(this,favorites.all.size.toString(),Toast.LENGTH_SHORT).show()
         binding.addToFav.setOnClickListener {
            val stagedCountry = favorites.query(FavoriteCountry_.cityName.equal(country.cityName)).build()
             .findFirst()
@@ -68,14 +67,14 @@ class DetailsActivity : BaseActivity<ActivityDetailsBinding>() {
                 favorites.remove(stagedCountry)
                 TastyToasty.Builder(this)
                     .setText("Sucessfully removed ${country.cityName} from favorites")
-                    .setBackgroundColor(R.color.transpar)
+                    .setBackgroundColor(R.color.purple_200)
                     .showTail(true)
                     .show()
             }
             else {
                 TastyToasty.Builder(this)
                     .setText("Sucessfully Added ${country.cityName} to favorites")
-                    .setBackgroundColor(R.color.transpar)
+                    .setBackgroundColor(R.color.purple_200)
                     .showTail(true)
                     .show()
                 viewModel.updateFav(true, -1, country.cityName)

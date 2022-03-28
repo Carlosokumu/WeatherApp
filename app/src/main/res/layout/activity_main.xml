@@ -93,7 +93,6 @@
         android:paddingBottom="@dimen/padding_rv_bottom"
         app:spanCount="2"
         android:visibility="visible"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         tools:layout_editor_absoluteX="0dp"
         tools:layout_editor_absoluteY="0dp"
