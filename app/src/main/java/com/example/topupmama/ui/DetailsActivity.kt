@@ -22,6 +22,7 @@ class DetailsActivity : BaseActivity<ActivityDetailsBinding>() {
     private lateinit var country: Country
     private val viewModel by viewModel<DetailViewModel>()
     private lateinit var favorites: Box<FavoriteCountry>
+    private lateinit  var city: ForeCastDb
 
     @ExperimentalCoroutinesApi
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,20 +30,21 @@ class DetailsActivity : BaseActivity<ActivityDetailsBinding>() {
         country = intent.getParcelableExtra("COUNTRY")!!
         binding.country = country
 
-
         binding.imageIcon.setImageResource(
-         country.getDrawable(country.description!!)
+            country.getDrawable(country.description!!)
         )
+        city = CountriesBox.store.boxFor(ForeCastDb::class.java)
+            .query(ForeCastDb_.cityName.equal(country.cityName)).build().findFirst()!!
 
-        val city = CountriesBox.store.boxFor(ForeCastDb::class.java)
-            .query(ForeCastDb_.cityName.equal(country.cityName)).build().findFirst()
+
+        // val
 
         favorites = CountriesBox.store.boxFor(FavoriteCountry::class.java)
 
 
 
         val temperatureMap = mapOf(
-            today to city!!.temps[firstDay].toFloat(),
+            today to city.temps[firstDay].toFloat(),
             tommorrow to city.temps[secondDay].toFloat(),
             dayAfterTommorrow to city.temps[thirdDay].toFloat(),
 
@@ -66,7 +68,7 @@ class DetailsActivity : BaseActivity<ActivityDetailsBinding>() {
                 viewModel.updateFav(false, 0, country.cityName)
                 favorites.remove(stagedCountry)
                 TastyToasty.Builder(this)
-                    .setText("Sucessfully removed ${country.cityName} from favorites")
+                    .setText("Sucessfully removed ${country?.cityName} from favorites")
                     .setBackgroundColor(R.color.purple_200)
                     .showTail(true)
                     .show()

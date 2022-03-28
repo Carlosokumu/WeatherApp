@@ -5,6 +5,7 @@ import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.core.util.ObjectsCompat
 import androidx.databinding.DataBindingUtil
@@ -20,6 +21,7 @@ import com.example.topupmama.data.models.Days
 import com.example.topupmama.databinding.WeatheritemBinding
 import com.example.topupmama.ui.DetailsActivity
 import com.example.topupmama.utils.getDrawable
+import com.uk.tastytoasty.TastyToasty
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -49,7 +51,14 @@ class WeatherAdapter(private val item: (Country) -> Unit?) :
     @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: WeatherVh, position: Int) {
         holder.itemView.setOnClickListener {
-            DetailsActivity.startDetailsActivity(it.context, unfilteredlist[position])
+            if (unfilteredlist[position].temp == null){
+                TastyToasty.error(holder.itemView.context,"Please wait as we initialize components").show()
+                return@setOnClickListener
+            }
+            else {
+                DetailsActivity.startDetailsActivity(it.context, unfilteredlist[position])
+            }
+
 
 
         }
