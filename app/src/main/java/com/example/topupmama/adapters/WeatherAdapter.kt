@@ -138,7 +138,10 @@ class WeatherAdapter(private val item: (Country) -> Unit?) :
 
             if (country != null){
                 binding.weatherIcon.visibility = View.VISIBLE
-                binding.weatherIcon.setImageResource(country.getDrawable(country.description!!))
+                if(country.description != null){
+                    binding.weatherIcon.setImageResource(country.getDrawable(country.description))
+                }
+
             }
 
             if (country?.temp == null) {
