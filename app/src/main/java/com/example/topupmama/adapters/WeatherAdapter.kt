@@ -22,6 +22,7 @@ import com.example.topupmama.databinding.WeatheritemBinding
 import com.example.topupmama.ui.DetailsActivity
 import com.example.topupmama.utils.getDrawable
 import com.uk.tastytoasty.TastyToasty
+import java.lang.NullPointerException
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -33,6 +34,7 @@ class WeatherAdapter(private val item: (Country) -> Unit?) :
     private var unfilteredlist = mutableListOf<Country>()
     private var forecastDays = mutableListOf<String>()
     private var temps = mutableMapOf<String, List<String>>()
+    private   var  country: Country? = null
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WeatherVh {
@@ -62,17 +64,23 @@ class WeatherAdapter(private val item: (Country) -> Unit?) :
 
 
         }
-        temps[unfilteredlist[position].cityName]
-        val forecasts = CountriesBox.store.boxFor(ForeCastDb::class.java)
-            .query(ForeCastDb_.cityName.equal(unfilteredlist[position].cityName)).build()
-            .findFirst()
+        //temps[unfilteredlist[position].cityName]
+        val item = unfilteredlist[position]  as Country?
+        if (item != null){
+            country = item
+        }
+         val    forecasts = CountriesBox.store.boxFor(ForeCastDb::class.java)
+                .query(ForeCastDb_.cityName.equal(unfilteredlist[position].cityName)).build()
+                .findFirst()
+
+
         if (forecasts == null || forecasts.temps.isEmpty()) {
              return
         }
         else {
 
               if (forecasts.temps.size == 3){
-                  holder.binding.firstDay.text = forecasts.temps[0] + "°"
+                  holder.binding.firstDay.text = forecasts.temps[0]  + "°"
                   holder.binding.secondDay.text = forecasts.temps[1] + "°"
                   holder.binding.thirdDay.text = forecasts.temps[2] + "°"
               }
