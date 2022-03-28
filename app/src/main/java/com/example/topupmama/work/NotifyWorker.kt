@@ -27,10 +27,12 @@ class NotifyWorker(val context: Context, params: WorkerParameters): CoroutineWor
 
     override suspend fun doWork(): Result {
         val favoriteCountries = CountriesBox.store.boxFor(FavoriteCountry::class.java).all
+        Log.d("FAVSIZE",favoriteCountries.size.toString())
         val cityNames = mutableListOf<String>()
         if (favoriteCountries.isNotEmpty()) {
             for (i in favoriteCountries) {
                 cityNames.add(i.cityName)
+                Log.d("CITYNAME",i.cityName)
             }
         }
 
@@ -49,7 +51,7 @@ class NotifyWorker(val context: Context, params: WorkerParameters): CoroutineWor
            ) {
                WeatherResult.WeatherError -> {
 
-
+                   Log.d("FETCHERROR","error")
 
 
                }
@@ -58,7 +60,8 @@ class NotifyWorker(val context: Context, params: WorkerParameters): CoroutineWor
                }
                is WeatherResult.Success -> {
                    Log.d("TEMPUPDATE",result.data.asNotification().temp.toString())
-                   NotificationCraftman.buildNotification(context,result.data.asNotification().temp.toString())
+                   //NotificationCraftman.buildNotification(context,result.data.asNotification().temp.toString())
+                   NotificationCraftman.buildNotificationTwo(context,result.data.asNotification())
                }
            }
 

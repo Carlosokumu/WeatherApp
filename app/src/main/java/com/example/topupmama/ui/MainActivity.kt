@@ -73,7 +73,8 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
 
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextChange(newText: String?): Boolean {
-                weatherAdapter.filter(newText)
+                //weatherAdapter.filter(newText)
+                weatherAdapter.filter(query = newText)
                 return true
             }
 

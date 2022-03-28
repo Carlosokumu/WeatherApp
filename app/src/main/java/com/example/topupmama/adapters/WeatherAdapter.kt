@@ -34,7 +34,15 @@ class WeatherAdapter(private val item: (Country) -> Unit?) :
     private var unfilteredlist = mutableListOf<Country>()
     private var forecastDays = mutableListOf<String>()
     private var temps = mutableMapOf<String, List<String>>()
+    private var itemscopy = mutableListOf<Country>()
     private   var  country: Country? = null
+    private var text = ""
+
+
+
+    init {
+        itemscopy.addAll(unfilteredlist)
+    }
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WeatherVh {
@@ -127,9 +135,11 @@ class WeatherAdapter(private val item: (Country) -> Unit?) :
         val list = mutableListOf<Country>()
 
         if (!query.isNullOrEmpty()) {
+
             list.addAll(unfilteredlist.filter {
-                it.cityName.toLowerCase(Locale.getDefault())
-                    .contains(query.toString().toLowerCase(Locale.getDefault()))
+//                it.cityName.toLowerCase(Locale.getDefault())
+//                    .contains(query.toString().toLowerCase(Locale.getDefault()))
+                it.cityName.toLowerCase(Locale.ROOT).contains(query.toString().toLowerCase(Locale.ROOT))
             })
         } else {
             list.addAll(unfilteredlist)
