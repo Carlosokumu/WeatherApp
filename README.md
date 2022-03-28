@@ -1,5 +1,6 @@
 # WeatherApp
-Writing Weather App  Using Android Architecture Components in 100% Kotlin.
+Writing Weather App  Using Android Architecture Components in 100% Kotlin.The final apk can be downloaded from here [APK](https://github.com/Carlosokumu/TopUpMama/blob/master/app/release/app-release.apk
+)
 
 **Background**
 
